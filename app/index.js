@@ -1,3 +1,21 @@
+/*
+ * @Author: Zhang-Zhen-Yang 
+ * @Date: 2017-05-26 23:24:33 
+ * @Last Modified by: Zhang-Zhen-Yang
+ * @Last Modified time: 2017-05-27 01:08:27
+ */
+/*import React, { Component } from 'react';
+import {AppRegistry,Text} from 'react-native';
+import {Provider} from 'react-redux'
+import App from './containers/App'
+//import store from './store'
+const UnityChan = () => (
+    <Provider>
+        <Text>ddddddddddddddddddddddddddddddd</Text>
+    </Provider>
+)
+
+AppRegistry.registerComponent('UnityChan', () => UnityChan);*/
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -20,7 +38,7 @@ export default class UnityChan extends Component {
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          To get started, edit index.ios.jsffffffffffffffffffffffffff
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}
