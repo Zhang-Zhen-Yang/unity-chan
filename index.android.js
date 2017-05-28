@@ -3,7 +3,7 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import {AppRegistry,Text} from 'react-native';
 import {Provider} from 'react-redux'
 import App from './app/containers/App'
@@ -14,6 +14,7 @@ const UnityChan = () => (
     </Provider>
 )
 
-AppRegistry.registerComponent('UnityChan', () => UnityChan);
+AppRegistry.registerComponent('UnityChan', () => UnityChan);*/
+import './app/index'
 
 

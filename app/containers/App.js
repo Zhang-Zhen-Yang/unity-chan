@@ -2,52 +2,69 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-27 01:37:36
+ * @Last Modified time: 2017-05-28 22:27:46
  */
 import React, { Component } from 'react';
 
 import Home from './Home'
 import Details from './Details'
+import Tab from './Tab'
 import {
   StackNavigator,
+  DrawerNavigator,
+  DrawerItems 
 } from 'react-navigation';
 
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {
     StyleSheet,
     View,
     Text,
-    Image
+    Image,
+    DrawerLayoutAndroid,
+    ToolbarAndroid,
+    ScrollView
 } from 'react-native'
 
-const SimpleApp = StackNavigator({
-  Home: { screen: Home },
-  Details: { screen: Details },
-});
-/*let unity = require('../img/pack.png');
+const SimpleApp = DrawerNavigator({
+    Home: { screen: Home },
+    Details: { screen: Details },
+  /*Tab:{screen:Tab}, */
+},{   
+    drawerWidth:250,
+    contentComponent: props => <ScrollView>
+            <Text>ddddddddddddddddddd</Text>
+            <DrawerItems {...props} />
+        </ScrollView>
+  });
 
-class App extends Component {
-    constructor(props){
-        super(props)
-        
-    }
+class App extends Component{
+    
     render() {
-        return (
-           <View style={styles.container}>                
-                <Text>
-                    app application ffff
-                </Text>
-                <Image source={unity}></Image>            
-           </View> 
+        var navigationView = (
+            <View style={{flex: 1, backgroundColor: '#fff'}}>
+                <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
+            </View>
+        );
+
+        return (                          
+            <SimpleApp></SimpleApp>
+         
         );
     }
 }
 const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'hotpink',
+    root:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'stretch'
+    },
+    toolBar:{
+        height:40 ,
+        backgroundColor:'#ff2f9f',
+        justifyContent:'flex-end',
+        alignItems:'center'
     }
-})*/
+})
 
-export default SimpleApp;
+export default App;
