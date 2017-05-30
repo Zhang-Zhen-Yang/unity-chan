@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:25 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 00:21:53
+ * @Last Modified time: 2017-05-31 00:18:13
  */
 
 import React, { Component } from 'react';
@@ -14,11 +14,10 @@ import {
 }from 'react-native'
 import R from '../R'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-class Details extends Component {
+class Setting extends Component {
     static navigationOptions =({navigation})=>({
-        drawerLabel: 'Details',
-        drawerIcon:()=>(<Icon name="details" size={R.dimen.drawerLayoutIcon}></Icon>)
-        
+        drawerLabel: 'settings',
+        drawerIcon:()=>(<Icon name="settings" size={R.dimen.drawerLayoutIcon}></Icon>)
     })
     constructor(props){
         super(props)        
@@ -29,14 +28,9 @@ class Details extends Component {
         return (
            <View style={styles.container}>                
                 <Text>
-                    Details
+                    Setting
                 </Text>
-                <Icon.Button name="menu" backgroundColor="#3b5998">
-                    <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
-                </Icon.Button>
-                <Text >
-                   ffff
-                </Text>
+               
            </View> 
         );
     }
@@ -49,4 +43,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'hotpink',
     }
 })
-export default Details;
+export default Setting;

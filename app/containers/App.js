@@ -2,13 +2,15 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-28 22:27:46
+ * @Last Modified time: 2017-05-31 00:14:05
  */
 import React, { Component } from 'react';
 
 import Home from './Home'
 import Details from './Details'
-import Tab from './Tab'
+import Download from './Download'
+import Setting from './Setting'
+import Manga from './Manga'
 import {
   StackNavigator,
   DrawerNavigator,
@@ -25,15 +27,23 @@ import {
     ToolbarAndroid,
     ScrollView
 } from 'react-native'
-
+import R from '../R'
+let unity = require('../img/pack.png');
 const SimpleApp = DrawerNavigator({
     Home: { screen: Home },
     Details: { screen: Details },
+    Download:{screen:Download},
+    Setting:{screen:Setting},
+    Manga:{screen:Manga}
   /*Tab:{screen:Tab}, */
 },{   
     drawerWidth:250,
     contentComponent: props => <ScrollView>
-            <Text>ddddddddddddddddddd</Text>
+            <View style={styles.headerView}>
+                <Image source={unity} style={{width:100,height:100,borderRadius:50}}>
+                    
+                </Image>
+            </View>
             <DrawerItems {...props} />
         </ScrollView>
   });
@@ -64,6 +74,11 @@ const styles = StyleSheet.create({
         backgroundColor:'#ff2f9f',
         justifyContent:'flex-end',
         alignItems:'center'
+    },
+    headerView:{
+        height:150,
+        backgroundColor:R.color.colorPrimary,
+        padding:30
     }
 })
 

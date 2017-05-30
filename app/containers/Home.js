@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:32 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-28 23:43:11
+ * @Last Modified time: 2017-05-31 00:17:17
  */
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
@@ -21,12 +21,13 @@ import {
 }from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import ViewPager from 'react-native-viewpager'
+import R from '../R'
 let unity = require('../img/pack.png');
 
 class Home extends Component {
     static navigationOptions =({ navigation })=> ({
         drawerLabel: 'Home',
-        drawerIcon:()=>(<Image source={{uri:'http://unity-chan.com/images/bgHeaderWebcomic.jpg'}} style={{width:600,height:50}}></Image>),
+        drawerIcon:()=>(<Icon name="home" size={R.dimen.drawerLayoutIcon} ></Icon>),
         headerTitle: 'Welcome',
        
         navigatorConfig :{
@@ -45,7 +46,10 @@ class Home extends Component {
     });
     constructor(props){
         super(props)
-        let BANNER_IMGS = ['http://unity-chan.com/images/imgComicH2unity-4.jpg','http://unity-chan.com/images/imgComicH2nochoice.jpg','http://unity-chan.com/images/imgComicH2uniyon.jpg']
+        let BANNER_IMGS = [
+            {uri:'http://unity-chan.com/images/ucpk_web.png'},
+            {uri:'http://unity-chan.com/images/imgComicH2nochoice.jpg'},
+            {uri:'http://unity-chan.com/images/imgComicH2uniyon.jpg'}]
         let dataSource = new ViewPager .DataSource({  
             pageHasChanged: (p1, p2) => p1 !== p2,  
         }); 
@@ -64,10 +68,10 @@ class Home extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar
-                        backgroundColor="deeppink"
+                        backgroundColor={R.color.colorPrimaryDark}
                         barStyle="light-content" />
                 <ToolbarAndroid title="" titleColor="#FFFFFF" contentInsetStart={5} style={styles.toolBar} actions={toolBarActions}>
-                    <Icon name="menu" size={30} color="#FFFFFF" style={{position:'absolute',right:0}} onPress={()=>{this.props.navigation.navigate('DrawerOpen');}}></Icon>
+                    <Icon name="menu" size={R.dimen.toolbarIcon} color="#FFFFFF" style={{position:'absolute',right:0}} onPress={()=>{this.props.navigation.navigate('DrawerOpen');}}></Icon>
                     <Text style={{fontSize:20,color:'#FFFFFF'}}>Home</Text>
                 </ToolbarAndroid>
                 <ViewPagerAndroid style={styles.container} initialPage={0}>
@@ -82,6 +86,7 @@ class Home extends Component {
                                     onPress={() => navigate('Details', { user: 'Lucy' })}
                                     title="Chat with Lucy" />
                                 <Text onPress={this.props.add}>ddddddddddd{this.props.counter.num}</Text>
+                                <Image source={{uri:'http://unity-chan.com/contents/wp-content/uploads/2014/08/enono_u4k_31.jpg'}} style={{width:360,height:1200}}></Image>
                             </ScrollView>
                         </View>
                     
@@ -99,7 +104,11 @@ class Home extends Component {
         ToastAndroid.show('ddddd',0);
     }
     _renderPage(data){
-        return (<Image source={{uri:data}} style={{flex:1,height:100}}></Image>)
+        var _this = this;
+        return (<TouchableWithoutFeedback onPress={()=>{ToastAndroid.show(JSON.stringify(_this.props),0);}}><Image source={{uri:data.uri}}  style={{flex:1,height:150}}></Image></TouchableWithoutFeedback>)
+    }
+    _swiperClick(){
+        ToastAndroid.show('ddd',0);
     }
     componentDidMount(){
         ToastAndroid.show(JSON.stringify(this.props),0);
@@ -110,14 +119,14 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'stretch',
-        backgroundColor: '#efefef',
+        backgroundColor: R.color.backgroundColor,
     },
     pageStyle:{
         alignItems: 'center',
         padding: 20,
     },
     toolBar:{
-        backgroundColor:'#ff2f9f',
+        backgroundColor:R.color.colorPrimary,
         height:50
     },
     wrapper:{
