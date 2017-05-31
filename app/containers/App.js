@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 21:40:04
+ * @Last Modified time: 2017-06-01 01:01:24
  */
 import React, { Component } from 'react';
 
@@ -19,6 +19,8 @@ import {
 } from 'react-navigation';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import {
     StyleSheet,
     View,
@@ -41,9 +43,17 @@ const DrawerPage = DrawerNavigator({
     drawerWidth:250,
     contentComponent: props => <ScrollView>
             <View style={styles.headerView}>
-                <Image source={unity} style={{width:100,height:100,borderRadius:50}}>
-                    
+                <Image source={unity} style={styles.headerViewAvator}>                    
                 </Image>
+                <View style={styles.headerViewEdit}>
+                    <MaterialIcons name="edit" color="#FFFFFF"></MaterialIcons>
+                </View>
+                <View style={[styles.headerViewEdit,{marginLeft:20}]}>
+                    <Ionicons name="ios-moon" color="#FFFFFF"></Ionicons>
+                </View>               
+                <View style={{paddingTop:10}}>
+                    <Text style={{color:'#FFFFFF',fontSize:12}}>法蒂希</Text>
+                </View>
             </View>
             <DrawerItems {...props} />
         </ScrollView>
@@ -82,7 +92,26 @@ const styles = StyleSheet.create({
     headerView:{
         height:150,
         backgroundColor:R.color.colorPrimary,
-        padding:30
+        padding:20,
+        flexDirection:'row',
+        flexWrap:'wrap'
+    },
+    headerViewAvator:{
+        width:80,
+        height:80,
+        borderRadius:40,
+        borderWidth:1,
+        borderColor:'#FFFFFF'
+    },
+    headerViewEdit:{
+        width:20,
+        height:20,
+        borderRadius:10,
+        borderWidth:1,
+        borderColor:'#FFFFFF',
+        justifyContent:'center',
+        alignItems:'center',
+        marginLeft:70
     }
 })
 

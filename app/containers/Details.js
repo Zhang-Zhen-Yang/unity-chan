@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:25 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 00:21:53
+ * @Last Modified time: 2017-06-01 01:05:29
  */
 
 import React, { Component } from 'react';
@@ -17,7 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 class Details extends Component {
     static navigationOptions =({navigation})=>({
         drawerLabel: 'Details',
-        drawerIcon:()=>(<Icon name="details" size={R.dimen.drawerLayoutIcon}></Icon>)
+        drawerIcon:({ tintColor })=>(<Icon name="details" size={R.dimen.drawerLayoutIcon} color={ tintColor }></Icon>)
         
     })
     constructor(props){

@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:25 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 00:17:27
+ * @Last Modified time: 2017-06-01 01:04:27
  */
 
 import React, { Component } from 'react';
@@ -21,8 +21,8 @@ import R from '../R'
 import ListViewData from './Download.data'
 class Download extends Component {
     static navigationOptions =({navigation})=>({
-        drawerLabel: 'download',
-        drawerIcon:()=>(<Icon name="download" size={R.dimen.drawerLayoutIcon}></Icon>)
+        drawerLabel: 'ダウンロード',
+        drawerIcon:({ tintColor })=>(<Icon name="download" size={R.dimen.drawerLayoutIcon} color={ tintColor }></Icon>)
     })
     constructor(props){
         super(props)

@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:32 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 00:17:17
+ * @Last Modified time: 2017-06-01 01:03:26
  */
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
@@ -20,14 +20,15 @@ import {
     ScrollView
 }from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import ViewPager from 'react-native-viewpager'
 import R from '../R'
 let unity = require('../img/pack.png');
 
 class Home extends Component {
     static navigationOptions =({ navigation })=> ({
-        drawerLabel: 'Home',
-        drawerIcon:()=>(<Icon name="home" size={R.dimen.drawerLayoutIcon} ></Icon>),
+        drawerLabel: 'ホーム',
+        drawerIcon:({ tintColor })=>(<Icon name="home" size={R.dimen.drawerLayoutIcon} color={tintColor}></Icon>),
         headerTitle: 'Welcome',
        
         navigatorConfig :{
@@ -47,7 +48,7 @@ class Home extends Component {
     constructor(props){
         super(props)
         let BANNER_IMGS = [
-            {uri:'http://unity-chan.com/images/ucpk_web.png'},
+            {uri:'http://unity-chan.com/images/imgPickupDownload.png'},
             {uri:'http://unity-chan.com/images/imgComicH2nochoice.jpg'},
             {uri:'http://unity-chan.com/images/imgComicH2uniyon.jpg'}]
         let dataSource = new ViewPager .DataSource({  
@@ -60,9 +61,10 @@ class Home extends Component {
     }
     render() {        
         const { navigate } = this.props.navigation;
-        const toolBarActions = [
-            {title: 'setting', show: 'always'},
-            {title: 'add', show: 'never'}
+        const toolBarActions = [            
+            {title: 'down', show: 'always',icon:require('../img/ic_get_app_white_24dp.png')},
+            //{title: 'music', show: 'always',icon:require('../img/ic_music_note_white_24dp.png')},
+            {title: 'search', show: 'always',icon:require('../img/ic_search_white_24dp.png')},
         ];
           
         return (
@@ -77,7 +79,7 @@ class Home extends Component {
                 <ViewPagerAndroid style={styles.container} initialPage={0}>
                          
                         <View style={styles.container}>
-                            <ScrollView>
+                            <ScrollView onScroll={this._containerScroll}>
                                 <ViewPager  style={styles.wrapper} dataSource={this.state.dataSource}  renderPage={this._renderPage} isLoop={true} autoPlay={true}></ViewPager>
                                 <TouchableWithoutFeedback onPress={this.props.sub}>
                                     <Image source = {unity} ></Image>
@@ -110,6 +112,9 @@ class Home extends Component {
     _swiperClick(){
         ToastAndroid.show('ddd',0);
     }
+    _containerScroll(data){
+        console.log(data);
+    }
     componentDidMount(){
         ToastAndroid.show(JSON.stringify(this.props),0);
     }
@@ -120,6 +125,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'stretch',
         backgroundColor: R.color.backgroundColor,
+        top:0
     },
     pageStyle:{
         alignItems: 'center',
@@ -127,7 +133,9 @@ const styles = StyleSheet.create({
     },
     toolBar:{
         backgroundColor:R.color.colorPrimary,
-        height:50
+        height:50,
+        /*transform:[{rotate:'10deg'}]*/
+        top:0
     },
     wrapper:{
         height:150,

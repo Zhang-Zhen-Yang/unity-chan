@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:25 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 21:29:39
+ * @Last Modified time: 2017-06-01 01:04:59
  */
 
 import React, { Component } from 'react';
@@ -23,7 +23,7 @@ import ListViewData from './Download.data'
 class Manga extends Component {
     static navigationOptions =({navigation})=>({
         drawerLabel: 'よんこまマンガ',
-        drawerIcon:()=>(<Icon name="book-open-variant" size={R.dimen.drawerLayoutIcon}></Icon>)
+        drawerIcon:({ tintColor })=>(<Icon name="book-open-variant" size={R.dimen.drawerLayoutIcon} color={ tintColor }></Icon>)
     })
     constructor(props){
         super(props)

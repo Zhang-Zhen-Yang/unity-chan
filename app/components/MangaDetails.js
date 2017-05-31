@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-31 21:20:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 23:04:39
+ * @Last Modified time: 2017-06-01 01:32:31
  */
 
 import React, { Component } from 'react';
@@ -28,8 +28,8 @@ class MangaDetails extends Component {
         this.state={
             indicatorAnimating:true,
             imgHeight:0,
-            imgWidth:0,
-            imgUrl:this.props.imgUrl
+            imgUrl:this.props.imgUrl,
+            windowWidth:0
         }   
     }
     render() {
@@ -40,25 +40,28 @@ class MangaDetails extends Component {
         </ActivityIndicator>):null;
         return (           
             <View style={styles.container}> 
-                <ScrollView>
+                <ScrollView onContentSizeChange={()=>{this._contentSizeChange()}}>
                     {indicator}
-                    <Image source={{uri:this.state.imgUrl}} style={{height:this.state.imgHeight/this.state.imgWidth*Dimensions.get('window').width}} />  
+                    <Image source={{uri:this.state.imgUrl}} style={{height:this.state.imgHeight/this.state.imgWidth*this.state.windowWidth}} />  
                       
                 </ScrollView>
             </View> 
         );
     }
+    _contentSizeChange(){
+        ToastAndroid.show('contentSizeChange',0);
+        this.setState({windowWidth:Dimensions.get('window').width});
+    }
     componentDidMount(){
         
         setTimeout(()=>{
             Image.getSize(this.state.imgUrl,(width,height)=>{
-                this.setState({imgHeight:height,imgWidth:width,indicatorAnimating:false});
+                this.setState({imgHeight:height,imgWidth:width,windowWidth:Dimensions.get('window').width,indicatorAnimating:false});
             },()=>{
                 ToastAndroid.show('network error',0);
                 this.setState({indicatorAnimating:false});
             });
-        },1000)
-        
+        },1000)        
 
     }
 }
