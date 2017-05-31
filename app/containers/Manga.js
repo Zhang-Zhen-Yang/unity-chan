@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:25 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 00:59:20
+ * @Last Modified time: 2017-05-31 21:29:39
  */
 
 import React, { Component } from 'react';
@@ -13,7 +13,8 @@ import {
     Image,
     StatusBar,
     ToolbarAndroid,
-    ListView
+    ListView,
+    TouchableHighlight
 }from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -43,7 +44,9 @@ class Manga extends Component {
                 </ToolbarAndroid>
                 <Image source={{uri:'http://unity-chan.com/images/bgHeaderWebcomic.jpg'}} style={{height:50}}></Image>
                 <View style={styles.mangaWrap}>
-                   <Image source={{uri:'http://unity-chan.com/images/imgComicH2uniyon.jpg'}} style={styles.mangaManga}></Image>
+                    <TouchableHighlight onPress={()=>{this.props.navigation.navigate('MangaDetails')}}>
+                        <Image source={{uri:'http://unity-chan.com/images/imgComicH2uniyon.jpg'}} style={styles.mangaManga}></Image>
+                    </TouchableHighlight>                   
                    <View style={styles.mangaTextWrap}>
                        <Text>最新5話を読む</Text>
                        <View style={styles.rowLayout}>

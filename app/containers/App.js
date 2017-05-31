@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-05-31 00:14:05
+ * @Last Modified time: 2017-05-31 21:40:04
  */
 import React, { Component } from 'react';
 
@@ -11,6 +11,7 @@ import Details from './Details'
 import Download from './Download'
 import Setting from './Setting'
 import Manga from './Manga'
+import MangaDetails from './MangaDetails'
 import {
   StackNavigator,
   DrawerNavigator,
@@ -29,7 +30,7 @@ import {
 } from 'react-native'
 import R from '../R'
 let unity = require('../img/pack.png');
-const SimpleApp = DrawerNavigator({
+const DrawerPage = DrawerNavigator({
     Home: { screen: Home },
     Details: { screen: Details },
     Download:{screen:Download},
@@ -48,15 +49,18 @@ const SimpleApp = DrawerNavigator({
         </ScrollView>
   });
 
-class App extends Component{
-    
+const SimpleApp = StackNavigator({
+    Stack:{screen:DrawerPage,navigationOptions:{header :null}},
+    MangaDetails:{screen:MangaDetails,navigationOptions:{header :null}}
+})
+
+class App extends Component{    
     render() {
-        var navigationView = (
+        /*var navigationView = (
             <View style={{flex: 1, backgroundColor: '#fff'}}>
                 <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
             </View>
-        );
-
+        );*/
         return (                          
             <SimpleApp></SimpleApp>
          
