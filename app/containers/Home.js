@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:32 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-01 01:03:26
+ * @Last Modified time: 2017-06-02 01:04:47
  */
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
@@ -17,14 +17,16 @@ import {
     TouchableWithoutFeedback,
     ToastAndroid,
     ToolbarAndroid,
-    ScrollView
+    ScrollView,
+    Dimensions,
+    RefreshControl
 }from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import ViewPager from 'react-native-viewpager'
 import R from '../R'
 let unity = require('../img/pack.png');
-
+import HomeCard from '../components/HomeCard'
 class Home extends Component {
     static navigationOptions =({ navigation })=> ({
         drawerLabel: 'ホーム',
@@ -55,7 +57,8 @@ class Home extends Component {
             pageHasChanged: (p1, p2) => p1 !== p2,  
         }); 
         this.state = {
-           dataSource:dataSource.cloneWithPages(BANNER_IMGS)  
+           dataSource:dataSource.cloneWithPages(BANNER_IMGS),
+           isRefreshing:false
         }
        
     }
@@ -72,31 +75,84 @@ class Home extends Component {
                 <StatusBar
                         backgroundColor={R.color.colorPrimaryDark}
                         barStyle="light-content" />
-                <ToolbarAndroid title="" titleColor="#FFFFFF" contentInsetStart={5} style={styles.toolBar} actions={toolBarActions}>
-                    <Icon name="menu" size={R.dimen.toolbarIcon} color="#FFFFFF" style={{position:'absolute',right:0}} onPress={()=>{this.props.navigation.navigate('DrawerOpen');}}></Icon>
-                    <Text style={{fontSize:20,color:'#FFFFFF'}}>Home</Text>
-                </ToolbarAndroid>
-                <ViewPagerAndroid style={styles.container} initialPage={0}>
+                <ToolbarAndroid title="HOME" 
+                    titleColor="#FFFFFF" 
+                    navIcon={require('../img/ic_menu_white_24dp.png')}  
+                    contentInsetStart={5} 
+                    style={styles.toolBar} 
+                    actions={toolBarActions}
+                    onIconClicked ={()=>{this.props.navigation.navigate('DrawerOpen');}}>
+                </ToolbarAndroid>                
                          
-                        <View style={styles.container}>
-                            <ScrollView onScroll={this._containerScroll}>
-                                <ViewPager  style={styles.wrapper} dataSource={this.state.dataSource}  renderPage={this._renderPage} isLoop={true} autoPlay={true}></ViewPager>
-                                <TouchableWithoutFeedback onPress={this.props.sub}>
-                                    <Image source = {unity} ></Image>
-                                </TouchableWithoutFeedback>                
-                                <Button
-                                    onPress={() => navigate('Details', { user: 'Lucy' })}
-                                    title="Chat with Lucy" />
-                                <Text onPress={this.props.add}>ddddddddddd{this.props.counter.num}</Text>
-                                <Image source={{uri:'http://unity-chan.com/contents/wp-content/uploads/2014/08/enono_u4k_31.jpg'}} style={{width:360,height:1200}}></Image>
-                            </ScrollView>
+                <View style={styles.container}>
+                    <ScrollView 
+                        onScroll={this._containerScroll} 
+                        onContentSizeChange={()=>{this._contentSizeChange()}}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.isRefreshing}
+                                onRefresh={()=>{this._onRefresh()}}
+                                tintColor={R.color.colorPrimary}
+                                title="Loading..."
+                                titleColor="#00ff00"
+                                colors={[R.color.colorPrimary]}
+                                progressBackgroundColor="#ffffff"
+                            />
+                        }>
+                        <ViewPager  style={styles.wrapper} dataSource={this.state.dataSource}  renderPage={this._renderPage} isLoop={true} autoPlay={true}></ViewPager>
+
+                        <View style={styles.contentWrap}>
+
+                            <View style={{flexDirection:'row',justifyContent:'space-between',alignContent:'stretch'}}>
+                                
+                                <Image source={{uri:'http://unity-chan.com/images/bgHeaderCogencityJournal.jpg'}} style={{flex:1,height:50,justifyContent:'center',alignItems:'center',borderRadius:3}} >
+                                </Image>
+                                <View style={{width:10}}>
+                                    
+                                </View>
+                                <Image source={require('../img/bgAboutUnityChan.png')} resizeMode="contain" style={{backgroundColor:R.color.colorPrimary,flex:1,height:50,justifyContent:'center',alignItems:'center',borderRadius:3}}>
+                                    
+                                </Image>                              
+
+                            </View>
+                            <View style={{flexDirection:'row',alignItems:'center',paddingTop:5,paddingBottom:5}}>
+                                <Icon name="hackernews" color="hotpink" size={25}></Icon><Text>news</Text>
+                            </View>
+
+                            <View style={{flexDirection:'row',justifyContent:'space-between',alignContent:'stretch',paddingTop:5,paddingBottom:5}}>
+                                <HomeCard uri="http://unity-chan.com/contents/wp-content/uploads/2017/03/DSC_0654-1.jpg" title="ユニティちゃん痛車！" date="Wed, 29 Mar 2017"></HomeCard>
+                                <View style={{width:10}}>
+
+                                </View>
+                                <HomeCard uri="http://unity-chan.com/contents/wp-content/uploads/2016/12/newyear.jpg" title="A Happy New Year!" date="Sun, 1 Jan 2017"></HomeCard>
+
+                            </View>
+                            <View style={{flexDirection:'row',justifyContent:'space-between',alignContent:'stretch',paddingTop:5,paddingBottom:5}}>
+                                <HomeCard uri="http://unity-chan.com/contents/wp-content/uploads/2016/09/unitychantoonshader.png" title="ユニティちゃんトゥーンシェーダーを開発したよ〜！…" date="Tue, 6 Sep 2016"></HomeCard>
+                                <View style={{width:10}}>
+
+                                </View>
+                                <HomeCard uri="http://unity-chan.com/contents/wp-content/uploads/2016/08/cd_jacket.png" title="C90 Present Day, Present Time. 収録不備楽曲につきまし…" date="Sat, 27 Aug 2016"></HomeCard>
+
+                            </View>
+
+
+                            <TouchableWithoutFeedback onPress={this.props.sub}>
+                                <Image source = {unity} ></Image>
+                            </TouchableWithoutFeedback>                
+                            <Button
+                                onPress={() => navigate('Details', { user: 'Lucy' })}
+                                title="Chat with Lucy" />
+                            <Text onPress={this.props.add}>ddddddddddd{this.props.counter.num}</Text>
+                            <Image source={{uri:'http://unity-chan.com/contents/wp-content/uploads/2014/08/enono_u4k_31.jpg'}} style={{width:360,height:1200}}></Image>
+
+
+
                         </View>
-                    
-                    <View style={styles.pageStyle}>
                         
-                        <Text>Second page</Text>
-                    </View>
-                </ViewPagerAndroid> 
+                    </ScrollView>
+                </View>
+                
             </View>          
             
          
@@ -107,13 +163,27 @@ class Home extends Component {
     }
     _renderPage(data){
         var _this = this;
-        return (<TouchableWithoutFeedback onPress={()=>{ToastAndroid.show(JSON.stringify(_this.props),0);}}><Image source={{uri:data.uri}}  style={{flex:1,height:150}}></Image></TouchableWithoutFeedback>)
+        return (<TouchableWithoutFeedback onPress={()=>{ToastAndroid.show(JSON.stringify(data),0);}}>
+            <Image source={{uri:data.uri}}  style={{flex:1,height:150}}></Image>
+        </TouchableWithoutFeedback>)
     }
     _swiperClick(){
         ToastAndroid.show('ddd',0);
     }
     _containerScroll(data){
-        console.log(data);
+        //console.log(data);
+    }
+    _contentSizeChange(){
+        ToastAndroid.show('contentSizeChange',0);
+        this.setState({windowWidth:Dimensions.get('window').width});
+    }
+    _onRefresh() {
+        this.setState({isRefreshing: true});
+        setTimeout(() => {
+            this.setState({
+                isRefreshing: false,
+            });
+        }, 5000);
     }
     componentDidMount(){
         ToastAndroid.show(JSON.stringify(this.props),0);
@@ -133,7 +203,7 @@ const styles = StyleSheet.create({
     },
     toolBar:{
         backgroundColor:R.color.colorPrimary,
-        height:50,
+        height:55,
         /*transform:[{rotate:'10deg'}]*/
         top:0
     },
@@ -146,6 +216,9 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'stretch'
     },
+    contentWrap:{
+        padding:12
+    }
    
 })
 const mapStateToProps = (state,ownProps) => {
@@ -165,3 +238,4 @@ const mapDispatchToProps = (dispatch,ownProps) => {
 }
 const HomeConnect = connect(mapStateToProps,mapDispatchToProps)(Home);
 export default HomeConnect;
+//http://unity-chan.com/event/c89/movie/c89_teaser_image.mp4

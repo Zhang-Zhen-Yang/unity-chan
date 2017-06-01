@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-01 01:01:24
+ * @Last Modified time: 2017-06-01 21:12:44
  */
 import React, { Component } from 'react';
 
@@ -46,13 +46,13 @@ const DrawerPage = DrawerNavigator({
                 <Image source={unity} style={styles.headerViewAvator}>                    
                 </Image>
                 <View style={styles.headerViewEdit}>
-                    <MaterialIcons name="edit" color="#FFFFFF"></MaterialIcons>
+                    <MaterialIcons name="edit" color="#FFFFFF" size={20}></MaterialIcons>
                 </View>
                 <View style={[styles.headerViewEdit,{marginLeft:20}]}>
-                    <Ionicons name="ios-moon" color="#FFFFFF"></Ionicons>
+                    <Ionicons name="ios-moon" color="#FFFFFF" size={20}></Ionicons>
                 </View>               
                 <View style={{paddingTop:10}}>
-                    <Text style={{color:'#FFFFFF',fontSize:12}}>法蒂希</Text>
+                    <Text style={{color:'#FFFFFF',fontSize:14}}>法蒂希</Text>
                 </View>
             </View>
             <DrawerItems {...props} />
@@ -104,14 +104,14 @@ const styles = StyleSheet.create({
         borderColor:'#FFFFFF'
     },
     headerViewEdit:{
-        width:20,
-        height:20,
-        borderRadius:10,
+        width:30,
+        height:30,
+        borderRadius:15,
         borderWidth:1,
         borderColor:'#FFFFFF',
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:70
+        marginLeft:50
     }
 })
 
