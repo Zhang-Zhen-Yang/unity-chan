@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:32 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-02 01:04:47
+ * @Last Modified time: 2017-06-03 23:48:29
  */
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
@@ -27,8 +27,9 @@ import ViewPager from 'react-native-viewpager'
 import R from '../R'
 let unity = require('../img/pack.png');
 import HomeCard from '../components/HomeCard'
+import TabLayout  from './TabLayout'
 class Home extends Component {
-    static navigationOptions =({ navigation })=> ({
+    /*static navigationOptions =({ navigation })=> ({
         drawerLabel: 'ホーム',
         drawerIcon:({ tintColor })=>(<Icon name="home" size={R.dimen.drawerLayoutIcon} color={tintColor}></Icon>),
         headerTitle: 'Welcome',
@@ -36,17 +37,13 @@ class Home extends Component {
         navigatorConfig :{
             drawerWidth: 100
         }
-        
-        /*,
-        headerLeft:<Icon name="menu" size={20} color="white"></Icon>,
-        headerRight:<Text style={{color:'#ffffff',marginRight:10}}>edit</Text>,
-        headerStyle:{
-            backgroundColor:'#ff2f9f',
-            height:40,                
-        },
-        headerTintColor:'#ffffff',*/
-      
-    });
+    });*/
+    static navigationOptions = {
+        title :'首页',
+        tabBarIcon :({focused, tintColor})=>{
+            return (<Icon name="home-outline" color={tintColor} size={25}></Icon>)
+        }
+    }
     constructor(props){
         super(props)
         let BANNER_IMGS = [
@@ -116,7 +113,7 @@ class Home extends Component {
 
                             </View>
                             <View style={{flexDirection:'row',alignItems:'center',paddingTop:5,paddingBottom:5}}>
-                                <Icon name="hackernews" color="hotpink" size={25}></Icon><Text>news</Text>
+                                <Icon name="hackernews" color={R.color.colorPrimary} size={25}></Icon><Text>news</Text>
                             </View>
 
                             <View style={{flexDirection:'row',justifyContent:'space-between',alignContent:'stretch',paddingTop:5,paddingBottom:5}}>
@@ -136,6 +133,7 @@ class Home extends Component {
 
                             </View>
 
+                            <Text>{this.props.windowSize.height}</Text>
 
                             <TouchableWithoutFeedback onPress={this.props.sub}>
                                 <Image source = {unity} ></Image>
@@ -144,7 +142,7 @@ class Home extends Component {
                                 onPress={() => navigate('Details', { user: 'Lucy' })}
                                 title="Chat with Lucy" />
                             <Text onPress={this.props.add}>ddddddddddd{this.props.counter.num}</Text>
-                            <Image source={{uri:'http://unity-chan.com/contents/wp-content/uploads/2014/08/enono_u4k_31.jpg'}} style={{width:360,height:1200}}></Image>
+                            <Image source={{uri:'http://unity-chan.com/contents/wp-content/uploads/2014/08/enono_u4k_31.jpg'}} style={{width:this.props.windowSize.width-22,height:1200}}></Image>
 
 
 
@@ -176,6 +174,7 @@ class Home extends Component {
     _contentSizeChange(){
         ToastAndroid.show('contentSizeChange',0);
         this.setState({windowWidth:Dimensions.get('window').width});
+        this.props.sizeChange(Dimensions.get('window'));
     }
     _onRefresh() {
         this.setState({isRefreshing: true});
@@ -223,7 +222,8 @@ const styles = StyleSheet.create({
 })
 const mapStateToProps = (state,ownProps) => {
     return {
-        counter:state.counter
+        counter:state.counter,
+        windowSize:state.windowSize
     }
 }
 const mapDispatchToProps = (dispatch,ownProps) => {
@@ -233,6 +233,9 @@ const mapDispatchToProps = (dispatch,ownProps) => {
         },
         sub:()=>{
             dispatch({type:'SUB'})
+        },
+        sizeChange:({width,height})=>{
+            dispatch({type:'CHANGE_WINDOW_SIZE',width:width,height:height});
         }
     }
 }

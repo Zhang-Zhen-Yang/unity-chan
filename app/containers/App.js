@@ -2,11 +2,11 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-01 21:12:44
+ * @Last Modified time: 2017-06-03 23:46:42
  */
 import React, { Component } from 'react';
 
-import Home from './Home'
+//import Home from './Home'
 import Details from './Details'
 import Download from './Download'
 import Setting from './Setting'
@@ -21,6 +21,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import TabLayout from './TabLayout'
 import {
     StyleSheet,
     View,
@@ -33,7 +34,8 @@ import {
 import R from '../R'
 let unity = require('../img/pack.png');
 const DrawerPage = DrawerNavigator({
-    Home: { screen: Home },
+    TabLayout:{ screen: TabLayout},
+    //Home: { screen: Home },
     Details: { screen: Details },
     Download:{screen:Download},
     Setting:{screen:Setting},
