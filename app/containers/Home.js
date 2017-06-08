@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:32 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-03 23:48:29
+ * @Last Modified time: 2017-06-09 00:07:51
  */
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
@@ -171,6 +171,7 @@ class Home extends Component {
     _containerScroll(data){
         //console.log(data);
     }
+    //当页面布局改变时
     _contentSizeChange(){
         ToastAndroid.show('contentSizeChange',0);
         this.setState({windowWidth:Dimensions.get('window').width});
