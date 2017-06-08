@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-05 23:43:36
+ * @Last Modified time: 2017-06-06 00:43:25
  */
 import { TabNavigator } from "react-navigation";
 import React,{Component} from 'react'
@@ -47,6 +47,8 @@ const TabLayout = TabNavigator({
 },{
     tabBarPosition:'bottom',
     swipeEnabled :false,
+    lazy:true,
+    animationEnabled:false,
     tabBarOptions:{
         backgroundColor:'#ffffff',
         style: {
