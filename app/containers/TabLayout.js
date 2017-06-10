@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-06 00:43:25
+ * @Last Modified time: 2017-06-10 22:20:24
  */
 import { TabNavigator } from "react-navigation";
 import React,{Component} from 'react'
@@ -12,19 +12,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import R from '../R'
 
 import Home from './Home'
+import Manga from './TabLayout.manga'
 import Music from './Music'
-
-class AllContactsScreen extends Component {
-    static navigationOptions = {
-        title :'漫画',
-        tabBarIcon :({focused, tintColor})=>{
-            return (<Icon name="book-open-variant" color={tintColor} size={25}></Icon>)
-        }
-    }
-  render() {
-    return <Text>List of all contacts</Text>
-  }
-}
 
 
 class More extends Component {
@@ -41,7 +30,7 @@ class More extends Component {
 
 const TabLayout = TabNavigator({
   Home: { screen: Home },
-  All: { screen: AllContactsScreen }, 
+  Manga: { screen: Manga }, 
   Music:{ screen:Music},
   More:{ screen:More},
 },{

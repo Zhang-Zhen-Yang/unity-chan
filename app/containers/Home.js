@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:32 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-09 00:07:51
+ * @Last Modified time: 2017-06-10 22:47:00
  */
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
@@ -68,7 +68,7 @@ class Home extends Component {
         ];
           
         return (
-            <View style={styles.container}>
+            <View style={R.style.container}>
                 <StatusBar
                         backgroundColor={R.color.colorPrimaryDark}
                         barStyle="light-content" />
@@ -76,12 +76,12 @@ class Home extends Component {
                     titleColor="#FFFFFF" 
                     navIcon={require('../img/ic_menu_white_24dp.png')}  
                     contentInsetStart={5} 
-                    style={styles.toolBar} 
+                    style={R.style.toolBar} 
                     actions={toolBarActions}
                     onIconClicked ={()=>{this.props.navigation.navigate('DrawerOpen');}}>
                 </ToolbarAndroid>                
                          
-                <View style={styles.container}>
+                <View style={R.style.container}>
                     <ScrollView 
                         onScroll={this._containerScroll} 
                         onContentSizeChange={()=>{this._contentSizeChange()}}
@@ -190,23 +190,11 @@ class Home extends Component {
     }
 }
 const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'stretch',
-        backgroundColor: R.color.backgroundColor,
-        top:0
-    },
     pageStyle:{
         alignItems: 'center',
         padding: 20,
     },
-    toolBar:{
-        backgroundColor:R.color.colorPrimary,
-        height:55,
-        /*transform:[{rotate:'10deg'}]*/
-        top:0
-    },
+    
     wrapper:{
         height:150,
         width:100,
