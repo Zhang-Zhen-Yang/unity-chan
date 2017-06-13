@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-06-10 22:17:39 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-13 23:51:48
+ * @Last Modified time: 2017-06-14 01:51:01
  */
 
 import React, { Component } from 'react';
@@ -14,7 +14,8 @@ import {
     Text,
     Image,
     TouchableNativeFeedback,
-    ToastAndroid
+    ToastAndroid,
+    Button
 } from 'react-native'
 
 class TabManga extends Component{
@@ -26,8 +27,22 @@ class TabManga extends Component{
             <View style={styles.MangaCard}>
                 <TouchableNativeFeedback onPress={()=>{this._navigateToDetails(this.props.type)}}>
                     <Image source={{uri:this.props.imgUrl}} style={{height:110}}></Image> 
-                </TouchableNativeFeedback>               
-               <Text>dddddd</Text>
+                </TouchableNativeFeedback>
+            
+                    <View style={[R.style.rowWrap,{padding:10}]}>
+                        <View style={{flex:1}}>
+                            <Text style={{color:'#333',fontWeight:'bold'}}>{this.props.category.title}</Text>
+                            <Text>{this.props.category.time}</Text>
+                        </View>
+                        <View>
+                            <View style={R.style.btnWhite}>
+                                <Text>{this.props.category.right}</Text>
+                            </View>
+                            
+                        </View>
+                    </View>                 
+            
+               
             </View>
            
            

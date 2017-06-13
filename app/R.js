@@ -13,6 +13,7 @@ export default {
         containerPadding:12
     },
     style:StyleSheet.create({
+        //toolbar
         toolBar:{
             backgroundColor:color.colorPrimary,
             height:55,
@@ -24,6 +25,20 @@ export default {
             alignItems: 'stretch',
             backgroundColor: color.backgroundColor,
             top:0
+        },
+        rowWrap:{
+            alignItems:'flex-start',
+            flexDirection:'row',
+            flexWrap:'wrap',
+        },
+        btnWhite:{
+            paddingLeft:10,
+            paddingRight:10,
+            paddingTop:8,
+            paddingBottom:8,
+            borderRadius:3,
+            borderWidth:1,
+            borderColor:'#ddd'
         }
     })
    
