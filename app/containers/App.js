@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-03 23:46:42
+ * @Last Modified time: 2017-06-13 23:36:10
  */
 import React, { Component } from 'react';
 
@@ -35,8 +35,6 @@ import R from '../R'
 let unity = require('../img/pack.png');
 const DrawerPage = DrawerNavigator({
     TabLayout:{ screen: TabLayout},
-    //Home: { screen: Home },
-    Details: { screen: Details },
     Download:{screen:Download},
     Setting:{screen:Setting},
     Manga:{screen:Manga}
@@ -61,9 +59,11 @@ const DrawerPage = DrawerNavigator({
         </ScrollView>
   });
 
+import details from './TabLayout.manga.details'
 const SimpleApp = StackNavigator({
     Stack:{screen:DrawerPage,navigationOptions:{header :null}},
-    MangaDetails:{screen:MangaDetails,navigationOptions:{header :null}}
+    MangaDetails:{screen:MangaDetails,navigationOptions:{header :null}},
+    Details:{screen:details,navigationOptions:{header :null}}
 })
 
 class App extends Component{    
