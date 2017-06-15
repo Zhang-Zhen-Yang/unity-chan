@@ -2,13 +2,14 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-06-10 22:17:39 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-15 23:51:18
+ * @Last Modified time: 2017-06-16 01:26:43
  */
 
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import R from '../R'
 import { NavigationActions } from 'react-navigation'
+import MangaDetails from '../components/MangaDetails'
 import {
     StyleSheet,
     ToolbarAndroid,
@@ -38,7 +39,7 @@ class MangaReading extends Component{
                     contentInsetStart={5} 
                     style={R.style.toolBar} 
                     actions={toolBarActions}
-                    onIconClicked ={()=>{dispatch(backAction)}}>
+                    onIconClicked ={()=>{dispatch(backAction);}}>
                 </ToolbarAndroid>
                 <ScrollView contentContainerStyle={{paddingLeft:R.dimen.containerPadding,paddingRight:R.dimen.containerPadding,paddingBottom:10}}>
                     <Text>
@@ -46,7 +47,7 @@ class MangaReading extends Component{
                     </Text>
                     {
                         state.params.data.content.map((item,index)=>{
-                            return item.text?(<Text key={index}>{item.text}</Text>):(<Image key={index} source={{uri:item.img}} style={{width:300,height:1000}}></Image>)
+                            return item.text?(<Text key={index}>{item.text}</Text>):<MangaDetails key={index} imgUrl={item.img}></MangaDetails>//(<Image key={index} source={{uri:item.img}} style={{width:300,height:1000}}></Image>)
                         })
                     }
                 </ScrollView>

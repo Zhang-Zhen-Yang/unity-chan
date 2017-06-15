@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-06-10 22:17:39 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-14 01:22:52
+ * @Last Modified time: 2017-06-16 00:53:58
  */
 
 import React, { Component } from 'react';
@@ -46,9 +46,9 @@ class TabManga extends Component{
                     onIconClicked ={()=>{this.props.navigation.navigate('DrawerOpen');}}>
                 </ToolbarAndroid>
                 <ScrollView contentContainerStyle={{paddingLeft:R.dimen.containerPadding,paddingRight:R.dimen.containerPadding,paddingBottom:10}}>
-                    <MangaCard imgUrl="http://unity-chan.com/images/imgComicH2unity-4.jpg" navigate={this.props.navigation.navigate} type="UNITY-4!" category={category.first}></MangaCard>
-                    <MangaCard imgUrl="http://unity-chan.com/images/imgComicH2nochoice.jpg" navigate={this.props.navigation.navigate} type=" UNITY-CHAN!は選べない！" category={category.second}></MangaCard> 
-                    <MangaCard imgUrl="http://unity-chan.com/images/imgComicH2uniyon.jpg" navigate={this.props.navigation.navigate} type="ゆによん！" category={category.third}></MangaCard> 
+                    <MangaCard imgUrl="http://unity-chan.com/images/imgComicH2unity-4.jpg" navigate={this.props.navigation.navigate} type="first" category={category.first}></MangaCard>
+                    <MangaCard imgUrl="http://unity-chan.com/images/imgComicH2nochoice.jpg" navigate={this.props.navigation.navigate} type="second" category={category.second}></MangaCard> 
+                    <MangaCard imgUrl="http://unity-chan.com/images/imgComicH2uniyon.jpg" navigate={this.props.navigation.navigate} type="third" category={category.third}></MangaCard> 
                 </ScrollView>
            </View>
            
