@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-27 02:56:32 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-10 22:47:00
+ * @Last Modified time: 2017-06-15 23:35:45
  */
 import { connect } from 'react-redux'
 import React, { Component } from 'react';
@@ -28,6 +28,7 @@ import R from '../R'
 let unity = require('../img/pack.png');
 import HomeCard from '../components/HomeCard'
 import TabLayout  from './TabLayout'
+
 class Home extends Component {
     /*static navigationOptions =({ navigation })=> ({
         drawerLabel: 'ホーム',

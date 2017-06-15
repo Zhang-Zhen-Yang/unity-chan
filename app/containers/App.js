@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-05-26 23:30:07 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-13 23:36:10
+ * @Last Modified time: 2017-06-15 23:35:16
  */
 import React, { Component } from 'react';
 
@@ -11,7 +11,7 @@ import Details from './Details'
 import Download from './Download'
 import Setting from './Setting'
 import Manga from './Manga'
-import MangaDetails from './MangaDetails'
+
 import {
   StackNavigator,
   DrawerNavigator,
@@ -59,11 +59,14 @@ const DrawerPage = DrawerNavigator({
         </ScrollView>
   });
 
+import MangaDetails from './MangaDetails'
 import details from './TabLayout.manga.details'
+import MangaReading from './TabLayout.manga.reading'
 const SimpleApp = StackNavigator({
     Stack:{screen:DrawerPage,navigationOptions:{header :null}},
     MangaDetails:{screen:MangaDetails,navigationOptions:{header :null}},
-    Details:{screen:details,navigationOptions:{header :null}}
+    Details:{screen:details,navigationOptions:{header :null}},
+    MangaReading:{screen:MangaReading,navigationOptions:{header:null}}
 })
 
 class App extends Component{    

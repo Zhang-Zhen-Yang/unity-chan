@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-06-10 22:17:39 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-14 01:51:01
+ * @Last Modified time: 2017-06-15 23:40:21
  */
 
 import React, { Component } from 'react';
@@ -48,9 +48,9 @@ class TabManga extends Component{
            
         );
     }
+    //跳转到漫画分卷页
     _navigateToDetails(type){
         this.props.navigate('Details',{type:type});
-        //ToastAndroid.show('dddd',0);
     }
 }
 const styles = StyleSheet.create({
