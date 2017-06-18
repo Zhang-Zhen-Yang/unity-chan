@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AppBar from '../component/appBar' 
 class Music extends Component {
     static navigationOptions = {
-        title :'首页',
+        title :'音乐',
         tabBarIcon :({focused, tintColor})=>{
             return (<Icon name="music-circle" color={tintColor} size={25}></Icon>)
         }

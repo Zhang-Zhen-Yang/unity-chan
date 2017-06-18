@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-06-13 23:29:58 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-18 23:02:41
+ * @Last Modified time: 2017-06-19 00:41:28
  */
 
 
@@ -22,6 +22,7 @@ import {
 import R from '../R'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import Foundation from 'react-native-vector-icons/Foundation'
 import { NavigationActions } from 'react-navigation'
 
 import { first, second, third} from '../data/manga'
@@ -38,7 +39,7 @@ class Details extends Component {
         const manga = { first, second, third };
        
         return (
-           <View style={[R.style.container,{backgroundColor:'white'}]}>
+           <View style={[R.style.container,{backgroundColor:'white',alignItems:'stretch'}]}>
                <ToolbarAndroid title="Manga details" 
                     titleColor="#FFFFFF" 
                     navIcon={require('../img/ic_arrow_back_white_24dp.png')}  
@@ -68,13 +69,38 @@ class Details extends Component {
                                 )
                             })}
                         </View>
-                        <Text>{JSON.stringify(this.props)} </Text>
-                        <Text>{params.type}</Text>
-                        <Text>{this.props.readingMangaIndex.index}</Text>
-                        <Text>{JSON.stringify(this.props.windowSize)}</Text>
+                        <View style={{height:20}}>
+
+                        </View>
+                        {
+                            /*<Text>{JSON.stringify(this.props)} </Text>
+                            <Text>{params.type}</Text>
+                            <Text>{this.props.readingMangaIndex.index}</Text>
+                            <Text>{JSON.stringify(this.props.windowSize)}</Text>*/
+                        }
                     </View>
                 </ScrollView>
+
                 
+                <View style={styles.bottom}>
+                    <View style={{flex:1,alignItems:'center'}}>
+                        <TouchableNativeFeedback onPress={()=>{this._share()}}>
+                            <Icon name="share-variant" size={26}></Icon>
+                        </TouchableNativeFeedback>
+                    </View>
+                    <View style={{flex:1,alignItems:'center'}}>
+                        <TouchableNativeFeedback onPress={()=>{this._bookMark()}}>
+                            <Foundation name="book-bookmark" size={28}></Foundation>
+                        </TouchableNativeFeedback>
+                    </View>
+                    <View style={{flex:1,alignItems:'center'}}>
+                        <TouchableNativeFeedback onPress={()=>{this._report()}}>
+                            <MaterialIcons name="report" size={30}></MaterialIcons>
+                        </TouchableNativeFeedback>
+                    </View>
+                    
+                    
+                </View>
 
                 
            </View> 
@@ -85,6 +111,15 @@ class Details extends Component {
         //ToastAndroid.show(this.props.windowSize.width,0);
         this.props.setReadingMangaIndex(index);
         this.props.navigation.navigate('MangaReading',{data:item});
+    }
+    _share(){
+        ToastAndroid.show('you click the share button',0);
+    }
+    _bookMark(){
+         ToastAndroid.show('you click the _bookMark button',0);
+    }
+    _report(){
+         ToastAndroid.show('you click the _report button',0);
     }
     componentDidMount(){
         this.props.setReadingMangaIndex(-1);
@@ -111,6 +146,16 @@ const styles = StyleSheet.create({
         paddingTop:8,
         paddingBottom:8,
         justifyContent:'center',
+        alignItems:'center'
+    },
+    bottom:{        
+        //position:'absolute',
+        backgroundColor:'white',
+        bottom:0,
+        borderColor:'#efefef',
+        borderWidth:1,
+        height:45,
+        flexDirection:'row',
         alignItems:'center'
     }
 

@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-06-10 22:17:39 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-18 23:33:06
+ * @Last Modified time: 2017-06-19 00:39:01
  */
 
 import React, { Component } from 'react';
@@ -43,13 +43,13 @@ class MangaReading extends Component{
                 <ScrollView contentContainerStyle={{paddingLeft:R.dimen.containerPadding,paddingRight:R.dimen.containerPadding,paddingBottom:10}}>
                     
                     <View style={[R.style.rowWrap,{justifyContent:'flex-end',marginTop:10,marginBottom:10}]}>
-                        <MaterialIcons name="access-time" size={20}></MaterialIcons><Text>{state.params.data.updateTime}</Text>
+                        <MaterialIcons name="access-time" size={20} color="orange"></MaterialIcons><Text style={{color:'orange'}}>{state.params.data.updateTime}</Text>
                     </View>
                     
                    
                     {
                         state.params.data.content.map((item,index)=>{
-                            return item.text?(<Text key={index}>{item.text}</Text>):<MangaDetails key={index} imgUrl={item.img}></MangaDetails>//(<Image key={index} source={{uri:item.img}} style={{width:300,height:1000}}></Image>)
+                            return item.text?(<Text key={index} style={{marginBottom:10}}>{item.text}</Text>):<MangaDetails key={index} imgUrl={item.img}></MangaDetails>//(<Image key={index} source={{uri:item.img}} style={{width:300,height:1000}}></Image>)
                         })
                     }
                 </ScrollView>
