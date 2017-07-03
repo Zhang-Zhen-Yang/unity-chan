@@ -17,7 +17,8 @@ class Appbar extends Component {
                 contentInsetStart={5} 
                 style={R.style.toolBar} 
                 actions={this.props.toolBarActions||[]}
-                onIconClicked ={()=>{}}>
+                onIconClicked ={()=>{}}
+                onActionSelected ={(index)=>{this.props.onActionSelected(index)}}>
             </ToolbarAndroid>
         );
     }

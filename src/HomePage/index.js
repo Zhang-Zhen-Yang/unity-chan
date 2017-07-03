@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet,ScrollView, RefreshControl, Dimensions } from 'react-native';
+import { View, Text, StyleSheet,ScrollView, RefreshControl, Dimensions, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import AppBar from '../component/appBar'
 import ViewPager from './ViewPager'
 import Crid from './Grid'
 import R from '../R'
 import { connect } from 'react-redux'
-const toolBarActions = [            
-    {title: 'down', show: 'always',icon:require('../img/ic_get_app_white_24dp.png')},
-    {title: 'search', show: 'always',icon:require('../img/ic_search_white_24dp.png')},
-];
-
 
 class Home extends Component {
     static navigationOptions = {
@@ -22,13 +17,17 @@ class Home extends Component {
     constructor( props ){
         super( props )
         this.state = {
-            isRefreshing:false
+            isRefreshing:false,
+            toolBarActions : [            
+                {title: 'down', show: 'always',icon:require('../img/ic_get_app_white_24dp.png')},
+                {title: 'search', show: 'always',icon:require('../img/ic_search_white_24dp.png')},
+            ]
         }
     }
     render() {
         return (
             <View style={R.style.container}>
-                <AppBar title="HOME" toolBarActions={toolBarActions}></AppBar>
+                <AppBar title="HOME" toolBarActions={this.state.toolBarActions} onActionSelected={(index)=>{this._appBarActionSelected(index)}}></AppBar>
                 <View style={R.style.container}>
                     <ScrollView 
                         onScroll={this._containerScroll} 
@@ -47,16 +46,8 @@ class Home extends Component {
                         <ViewPager></ViewPager>
 
                         <Crid></Crid>
-
-                        
-
                     </ScrollView>
-
-                    
-
-
                 </View>
-                
             </View>
         );
     }
@@ -75,7 +66,17 @@ class Home extends Component {
         this.setState({windowWidth:Dimensions.get('window').width});
         this.props.sizeChange(Dimensions.get('window'));
     }
-
+    //toolbar optionsMenu
+    _appBarActionSelected(index){
+        switch(index){
+            case 0:
+                console.log(this.props);
+                this.props.navigation.navigate('Donwload',{index:index});
+                break;
+            case 1:
+                break;
+        }
+    }
 }
 const mapStateToProps = (state,ownProps) => {
     return {

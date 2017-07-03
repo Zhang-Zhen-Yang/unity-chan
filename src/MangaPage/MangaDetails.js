@@ -2,7 +2,7 @@
  * @Author: Zhang-Zhen-Yang 
  * @Date: 2017-06-13 23:29:58 
  * @Last Modified by: Zhang-Zhen-Yang
- * @Last Modified time: 2017-06-19 00:41:28
+ * @Last Modified time: 2017-07-04 02:05:31
  */
 
 
@@ -25,7 +25,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Foundation from 'react-native-vector-icons/Foundation'
 import { NavigationActions } from 'react-navigation'
 
-import { first, second, third} from '../data/manga'
+import { first, second, third, category} from '../data/manga'
 class Details extends Component {
     constructor(props){
         super(props)
@@ -40,20 +40,52 @@ class Details extends Component {
        
         return (
            <View style={[R.style.container,{backgroundColor:'white',alignItems:'stretch'}]}>
-               <ToolbarAndroid title="Manga details" 
+               <ToolbarAndroid title="Manga Details" 
                     titleColor="#FFFFFF" 
                     navIcon={require('../img/ic_arrow_back_white_24dp.png')}  
                     contentInsetStart={5} 
                     style={R.style.toolBar} 
                     onIconClicked ={()=>{dispatch(backAction)}}>
                 </ToolbarAndroid>
-                <ScrollView contentContainerStyle={[R.style.rowWrap,{paddingLeft:12,paddingRight:12,paddingTop:12}]}>
+                <ScrollView contentContainerStyle={[R.style.rowWrap,{paddingLeft:12,paddingRight:10,paddingTop:12}]}>
                     <View>
-                        <Image source={{uri:'http://unity-chan.com/contents/wp-content/uploads/2014/06/zunda_top1.jpg'}} style={{width:100,height:120}}></Image> 
-                        <View style={[R.style.rowWrap,styles.favoriteBtn]}>
-                            <MaterialIcons name="star-border" color={"orange"} size={15}></MaterialIcons><Text style={{color:'orange',fontWeight:'bold'}}>Favorite</Text>
+                        <View style={{flexDirection:'row'}}>
+                            <Image source={{uri:category[params.type].cover,resizeMode:'cover'}} style={{borderRadius:5,width:100,height:130}}></Image> 
+                            <View style={{paddingLeft:8,flex:1}}>
+                                <Text style={styles.mangaTitle}>{category[params.type].title}</Text>
+                                <Text>AUTHOR:{category[params.type].author}</Text>
+                                <View style={{flexDirection:'row'}}>
+                                    {
+                                        [
+                                           <MaterialIcons key={0} name="star-border" color={"orange"} size={15}></MaterialIcons>,
+                                           <MaterialIcons key={1} name="star-border" color={"orange"} size={15}></MaterialIcons>, 
+                                           <MaterialIcons key={2} name="star-border" color={"orange"} size={15}></MaterialIcons>,
+                                           <MaterialIcons key={3} name="star-border" color={"orange"} size={15}></MaterialIcons>,
+                                           <MaterialIcons key={4} name="star-border" color={"orange"} size={15}></MaterialIcons>,
+                                        ]
+                                      
+                                    }
+                                    
+                                </View>
+                                <View style={{flex:1,alignItems:'flex-end',flexDirection:'row',justifyContent:'flex-start'}}>
+                                    <View style={[styles.favoriteBtn,{flexDirection:'row'}]}>
+                                        <MaterialIcons name="star-border" color={"orange"} size={15}></MaterialIcons><Text style={{color:'orange',fontWeight:'bold'}}>Favorite</Text> 
+                                    </View>
+                                    <TouchableNativeFeedback onPress={()=>{this._read()}}>
+                                        <View style={[styles.readBtn,{backgroundColor:R.color.colorPrimary}]} >
+                                            <Text style={{color:'white',fontWeight:'bold'}}>Read 第{this.props.readingMangaIndex.index>-1?this.props.readingMangaIndex.index+1  :1}话 </Text>
+                                        </View>
+                                    </TouchableNativeFeedback>
+                                    
+
+                                </View>
+                                                              
+                            </View>
                         </View>
-                        <View style={[R.style.rowWrap,{paddingLeft:0,paddingRight:0}]}>
+                        
+
+
+                        <View style={[R.style.rowWrap,{paddingLeft:0,paddingRight:0,marginTop:10}]}>
                             { { first, second, third}[params.type].map((item,index)=>{
                                 return (
                                     <TouchableNativeFeedback onPress={()=>{this._selectedVol(item, index)}} key={item.title}>
@@ -80,7 +112,6 @@ class Details extends Component {
                         }
                     </View>
                 </ScrollView>
-
                 
                 <View style={styles.bottom}>
                     <View style={{flex:1,alignItems:'center'}}>
@@ -93,6 +124,7 @@ class Details extends Component {
                             <Foundation name="book-bookmark" size={28}></Foundation>
                         </TouchableNativeFeedback>
                     </View>
+                    
                     <View style={{flex:1,alignItems:'center'}}>
                         <TouchableNativeFeedback onPress={()=>{this._report()}}>
                             <MaterialIcons name="report" size={30}></MaterialIcons>
@@ -109,6 +141,12 @@ class Details extends Component {
     //选择漫画卷数
     _selectedVol(item, index){
         //ToastAndroid.show(this.props.windowSize.width,0);
+        this.props.setReadingMangaIndex(index);
+        this.props.navigation.navigate('MangaReading',{data:item});
+    }
+    _read(){
+        let index = this.props.readingMangaIndex.index>-1?this.props.readingMangaIndex.index :0;
+            item = { first, second, third}[this.props.navigation.state.params.type][index];
         this.props.setReadingMangaIndex(index);
         this.props.navigation.navigate('MangaReading',{data:item});
     }
@@ -145,8 +183,25 @@ const styles = StyleSheet.create({
         borderRadius:2,
         paddingTop:8,
         paddingBottom:8,
+        paddingLeft:5,
+        paddingRight:8,
         justifyContent:'center',
         alignItems:'center'
+    },
+    mangaTitle:{
+        fontSize:18,
+        fontWeight:'bold',
+        color:'#333333'
+    },
+    readBtn:{
+        borderWidth:1,
+        borderColor:R.color.colorPrimary,
+        paddingTop:8,
+        paddingBottom:8,
+        paddingLeft:8,
+        paddingRight:8,
+        borderRadius:2,
+        marginLeft:5
     },
     bottom:{        
         //position:'absolute',

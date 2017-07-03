@@ -3,19 +3,25 @@ export let category = {
         title:'UNITY-4!',
         current:['UNITY-4! Mastered Up!','UNITY-4! Vol.24','UNITY-4! vol.23','UNITY-4! vol.22','UNITY-4! vol.21'],
         right:'Vol.24を読む',
-        time:'Mon, 11 Aug 2014'
+        time:'Mon, 11 Aug 2014',
+        author:'ずんだコロッケ',
+        cover:'http://unity-chan.com/images/imgComicH2unity-4.jpg'
     },
     second:{
         title:'UNITY-CHAN!は選べない！',
         current:['UNITY-CHAN!は選べない！Vol.10','UNITY-CHAN!は選べない！ Vol.09','UNITY-CHAN!は選べない！ Vol.08','UNITY-CHAN!は選べない！ Vol.07','UNITY-CHAN!は選べない！ vol.06'],
         right:'Vol.10を読む',
-        time:'Sun, 24 Aug 2014'
+        time:'Sun, 24 Aug 2014',
+        author:'蒲焼鰻',
+        cover:'http://unity-chan.com/contents/wp-content/uploads/2014/07/top.jpg'
     },
     third:{
         title:'ゆによん！',
         current:['によん！ Mastered Up!','ゆによん！ Vol.30','ゆによん！ Vol.29','ゆによん！ Vol.28','ゆによん！ Vol.27'],
         right:'Vol.30を読む',
-        time:'Tue, 26 Aug 2014'
+        time:'Tue, 26 Aug 2014',
+        author:'芹沢えのの',
+        cover:'http://unity-chan.com/images/imgComicH2uniyon.jpg'
     }
 }
 export let first = [
